@@ -1,0 +1,42 @@
+# Build artefacts and caches
+**/__pycache__/
+*.pyc
+.triton_cache/
+.ipynb_checkpoints/
+
+# Containers / large binaries
+*.sif
+*.squashfs
+*.tar
+*.pt
+*.bin
+*.safetensors
+
+# Training / inference outputs
+outputs/
+output/
+output_audio/
+demo_output/
+wandb/
+wandb_tmp/
+
+# Slurm / log noise
+slurm-*.out
+slurm-*.err
+logs/
+*.log
+
+# Local data
+demo_data/
+finetune_codes/70hr/
+finetune_codes/dataset-eval/
+finetune_codes/demo_data/
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Secrets
+.env
+*.pem

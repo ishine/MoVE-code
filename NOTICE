@@ -1,0 +1,88 @@
+Kimi-Audio Emotion-Aware S2ST
+Copyright 2026 The Kimi-Audio Emotion-Aware S2ST Authors.
+
+This product is released under the Apache License 2.0 (see LICENSE).
+
+It bundles or depends on the following third-party components, each of
+which is the property of its respective owners and is governed by its
+own license. Where a license file is bundled in-tree, it is preserved
+in the directory listed below.
+
+================================================================================
+1. Kimi-Audio (MoonshotAI/Kimi-Audio)
+   Source:        https://github.com/MoonshotAI/Kimi-Audio
+   Used here:     kimia_infer/, finetune_codes/
+   Role:          Inference SDK and finetune scaffolding for the base model.
+   License:       Refer to the upstream repository for the current license
+                  text. Before publishing this release, please copy the
+                  upstream LICENSE file into kimia_infer/LICENSE.
+   Notes:         The LoRA / xLoRA adapters trained with this codebase are
+                  derivative works of the moonshotai/Kimi-Audio-7B model
+                  weights and inherit those weights' license terms.
+
+================================================================================
+2. GLM-4-Voice (THUDM)
+   Source:        https://github.com/THUDM/GLM-4-Voice
+                  https://huggingface.co/THUDM/glm-4-voice-decoder
+                  https://huggingface.co/THUDM/glm-4-voice-tokenizer
+   Used here:     glm_4_voice_decoder/  (license preserved in
+                                          glm_4_voice_decoder/LICENSE)
+                  kimia_infer/models/tokenizer/glm4/  (license preserved in
+                                          kimia_infer/models/tokenizer/glm4/LICENSE)
+   Role:          Audio detokenizer (flow + HiFT vocoder) and the speech
+                  tokenizer used during semantic-code extraction.
+   License:       The glm-4-voice License (see glm_4_voice_decoder/LICENSE).
+                  Key obligations for redistributors:
+                    - Free for academic use; commercial use requires
+                      registration at https://open.bigmodel.cn/mla/form
+                    - Must include the full license text alongside any
+                      distribution of the model or its derivatives.
+                    - Must prominently display "Built with glm-4" on
+                      websites, READMEs, papers, and product surfaces.
+                    - Derivative model names must start with "glm-4".
+                    - No military or unlawful use.
+                    - Governed by PRC law.
+   Notes:         The fine-tuned decoder weights distributed via
+                  https://huggingface.co/47z/glm-4-voice-decoder-emo-ft
+                  are derivative works of the upstream GLM-4-Voice decoder
+                  and inherit the glm-4-voice License in full.
+
+================================================================================
+3. CosyVoice (FunAudioLLM/CosyVoice)
+   Source:        https://github.com/FunAudioLLM/CosyVoice
+   Used here:     cosyvoice/
+   Role:          Required transitive dependency of the GLM-4-Voice flow
+                  decoder (loaded via hyperpyyaml from
+                  glm_4_voice_decoder/config.yaml).
+   License:       Refer to the upstream repository for the current license
+                  text. Before publishing this release, please copy the
+                  upstream LICENSE file into cosyvoice/LICENSE.
+
+================================================================================
+4. Matcha-TTS (shivammehta25/Matcha-TTS)
+   Source:        https://github.com/shivammehta25/Matcha-TTS
+   Used here:     matcha/  (HiFiGAN sub-module license preserved in
+                            matcha/hifigan/LICENSE)
+   Role:          Required transitive dependency of CosyVoice (decoder
+                  building blocks: flow_matching, decoder, transformer).
+   License:       Refer to the upstream repository for the current license
+                  text. Before publishing this release, please copy the
+                  upstream LICENSE file into matcha/LICENSE.
+
+================================================================================
+TODO BEFORE PUBLIC RELEASE
+================================================================================
+The vendored upstream packages above need their top-level LICENSE files
+copied in from upstream so the in-repo attribution is complete:
+
+    kimia_infer/LICENSE        <-  MoonshotAI/Kimi-Audio
+    finetune_codes/LICENSE     <-  MoonshotAI/Kimi-Audio (same upstream)
+    cosyvoice/LICENSE          <-  FunAudioLLM/CosyVoice
+    matcha/LICENSE             <-  shivammehta25/Matcha-TTS
+
+Already in place (do not modify):
+
+    LICENSE                                          <-  this project (Apache 2.0)
+    glm_4_voice_decoder/LICENSE                      <-  THUDM (glm-4-voice)
+    kimia_infer/models/tokenizer/glm4/LICENSE        <-  THUDM (glm-4-voice)
+    matcha/hifigan/LICENSE                           <-  matcha hifigan submodule

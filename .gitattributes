@@ -1,0 +1,14 @@
+*.sif filter=lfs diff=lfs merge=lfs -text
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.bin filter=lfs diff=lfs merge=lfs -text
+*.tar filter=lfs diff=lfs merge=lfs -text
+*.ckpt filter=lfs diff=lfs merge=lfs -text
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
+kimi-audio_v2.0.tar filter=lfs diff=lfs merge=lfs -text
+*.jsonl filter=lfs diff=lfs merge=lfs -text
+*.squashfs filter=lfs diff=lfs merge=lfs -text
+output/pretrained_hf/*.safetensors filter=lfs diff=lfs merge=lfs -text
+output/pretrained_hf/*.json filter=lfs diff=lfs merge=lfs -text
+output/pretrained_hf/*.py filter=lfs diff=lfs merge=lfs -text
+demo_output/en/angry/4835en.wav filter=lfs diff=lfs merge=lfs -text
+*.wav filter=lfs diff=lfs merge=lfs -text

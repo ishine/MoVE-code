@@ -1,0 +1,7 @@
+{
+    "MoE_sad":    "./outputs/lora_sad/checkpoint-XXXX",
+    "MoE_laugh":  "./outputs/lora_laugh/checkpoint-XXXX",
+    "MoE_happy":  "./outputs/lora_happy/checkpoint-XXXX",
+    "MoE_crying": "./outputs/lora_crying/checkpoint-XXXX",
+    "MoE_angry":  "./outputs/lora_angry/checkpoint-XXXX"
+}

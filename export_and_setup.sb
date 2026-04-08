@@ -1,0 +1,59 @@
+#!/bin/bash
+# ============================================================
+# Merge a LoRA adapter -> inference-ready Kimi-Audio checkpoint
+# ============================================================
+#
+# Thin wrapper around export_adapter.py.
+#
+# Local:
+#   bash export_and_setup.sb \
+#     --base_model ./output/pretrained_hf \
+#     --adapter_dir ./outputs/lora_demo/checkpoint-1000 \
+#     --output_dir ./outputs/lora_demo_for_inference
+#
+# Slurm:
+#   sbatch --account=<your_account> --partition=<your_partition> \
+#          --gres=gpu:1 export_and_setup.sb [args...]
+#
+# Optional env vars:
+#   CONTAINER_CMD   wrap python in docker/enroot/etc.
+# ============================================================
+
+#SBATCH --job-name=kimi-export
+#SBATCH --output=slurm-%j.out
+#SBATCH --error=slurm-%j.err
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=4
+#SBATCH --gres=gpu:1
+
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+BASE_MODEL=""
+ADAPTER_DIR=""
+OUTPUT_DIR=""
+
+while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+        --base_model)   BASE_MODEL="$2";  shift 2 ;;
+        --adapter_dir)  ADAPTER_DIR="$2"; shift 2 ;;
+        --output_dir)   OUTPUT_DIR="$2";  shift 2 ;;
+        # Backwards-compat alias
+        --ADAPTER_DIR)  ADAPTER_DIR="$2"; shift 2 ;;
+        -h|--help)      sed -n '2,22p' "$0"; exit 0 ;;
+        *) echo "Unknown argument: $1"; exit 1 ;;
+    esac
+done
+
+: "${BASE_MODEL:?--base_model is required}"
+: "${ADAPTER_DIR:?--adapter_dir is required}"
+: "${OUTPUT_DIR:?--output_dir is required}"
+
+CONTAINER_CMD="${CONTAINER_CMD:-}"
+export PYTHONUNBUFFERED=1
+
+${CONTAINER_CMD} python export_adapter.py \
+    --base_model "$BASE_MODEL" \
+    --adapter_dir "$ADAPTER_DIR" \
+    --output_dir "$OUTPUT_DIR"

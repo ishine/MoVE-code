@@ -1,0 +1,63 @@
+#!/bin/bash
+# ============================================================
+# Extract GLM-4-Voice semantic codes for one metadata jsonl
+# ============================================================
+#
+# Local:
+#   DATA_DIR=/abs/path/DATA_DIR \
+#   METADATA_FILE=/abs/path/DATA_DIR/metadata/training_metadata.jsonl \
+#   MODEL_NAME_OR_PATH=/abs/path/Kimi-Audio-7B \
+#   ./extract_tokens.sb
+#
+# Slurm:
+#   sbatch --account=<your_account> --partition=<your_partition> \
+#          --gres=gpu:1 extract_tokens.sb
+#
+# Required env vars:
+#   DATA_DIR             root dir; relative audio paths in METADATA_FILE
+#                        are resolved against this
+#   METADATA_FILE        raw metadata jsonl to tokenize
+#   MODEL_NAME_OR_PATH   full Kimi-Audio-7B distribution (must contain
+#                        whisper-large-v3/) -- the trimmed pretrained_hf
+#                        used for training does NOT work here.
+#
+# Optional env vars:
+#   OUTPUT_FILE          default: ${DATA_DIR}/metadata/training_metadata_with_semantic_codes.jsonl
+#   CONTAINER_CMD        wrap python in docker/enroot/etc.
+# ============================================================
+
+#SBATCH --job-name=kimi-extract
+#SBATCH --output=slurm-%j.out
+#SBATCH --error=slurm-%j.err
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --gres=gpu:1
+
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+: "${DATA_DIR:?DATA_DIR is required}"
+: "${METADATA_FILE:?METADATA_FILE is required}"
+: "${MODEL_NAME_OR_PATH:?MODEL_NAME_OR_PATH is required (full Kimi-Audio-7B with whisper-large-v3/)}"
+OUTPUT_FILE="${OUTPUT_FILE:-${DATA_DIR}/metadata/training_metadata_with_semantic_codes.jsonl}"
+CONTAINER_CMD="${CONTAINER_CMD:-}"
+
+if [ ! -f "$METADATA_FILE" ]; then
+    echo "ERROR: METADATA_FILE not found: $METADATA_FILE" >&2
+    exit 1
+fi
+
+echo "============================================================"
+echo "Data dir:      $DATA_DIR"
+echo "Metadata file: $METADATA_FILE"
+echo "Output file:   $OUTPUT_FILE"
+echo "Model:         $MODEL_NAME_OR_PATH"
+echo "============================================================"
+
+${CONTAINER_CMD} python -m finetune_codes.extract_semantic_codes \
+    --data_dir          "$DATA_DIR" \
+    --metadata_file     "$METADATA_FILE" \
+    --output_file       "$OUTPUT_FILE" \
+    --model_name_or_path "$MODEL_NAME_OR_PATH"
