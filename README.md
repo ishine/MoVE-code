@@ -1,5 +1,14 @@
 # Kimi-Audio Emotion-Aware S2ST
 
+[![Paper](https://img.shields.io/badge/Paper-Coming%20Soon-b31b1b)](#)
+[![Demo](https://img.shields.io/badge/Demo-Live-4f46e5)](https://47zzz.github.io/MoVE/)
+[![Project](https://img.shields.io/badge/Project-MoVE-181717)](https://github.com/47zzz/MoVE)
+
+> Code companion to **MoVE: Translating Laughter and Tears via Mixture of
+> Vocalization Experts in Speech-to-Speech Translation** (Interspeech 2026, Under Review).
+>
+> 📄 **Paper:** *Coming soon* — link will be updated after paper release.
+
 LoRA / xLoRA fine-tuning of [Kimi-Audio](https://github.com/MoonshotAI/Kimi-Audio)
 for emotion-preserving Chinese ↔ English speech-to-speech translation.
 
@@ -10,6 +19,11 @@ This repository contains:
 * two single-sample inference entry points (LoRA-merged and xLoRA-routed)
 
 It does **not** ship model checkpoints. Train your own with the steps below.
+
+> 🎬 **Looking for audio samples and the dataset?** The interactive demo
+> page, dataset samples, and model output comparisons live in the main
+> project repository: **[47zzz/MoVE](https://github.com/47zzz/MoVE)**
+> ([live demo](https://47zzz.github.io/MoVE/)).
 
 ---
 
