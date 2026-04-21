@@ -1,13 +1,13 @@
 # Kimi-Audio Emotion-Aware S2ST
 
-[![Paper](https://img.shields.io/badge/Paper-Coming%20Soon-b31b1b)](#)
+[![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b)](https://arxiv.org/pdf/2604.17435)
 [![Demo](https://img.shields.io/badge/Demo-Live-4f46e5)](https://47zzz.github.io/MoVE/)
 [![Project](https://img.shields.io/badge/Project-MoVE-181717)](https://github.com/47zzz/MoVE)
 
 > Code companion to **MoVE: Translating Laughter and Tears via Mixture of
 > Vocalization Experts in Speech-to-Speech Translation** (Interspeech 2026, Under Review).
 >
-> 📄 **Paper:** *Coming soon* — link will be updated after paper release.
+> 📄 **Paper:** https://arxiv.org/pdf/2604.17435
 
 LoRA / xLoRA fine-tuning of [Kimi-Audio](https://github.com/MoonshotAI/Kimi-Audio)
 for emotion-preserving Chinese ↔ English speech-to-speech translation.
