@@ -24,6 +24,8 @@ It does **not** ship model checkpoints. Train your own with the steps below.
 > page, dataset samples, and model output comparisons live in the main
 > project repository: **[47zzz/MoVE](https://github.com/47zzz/MoVE)**
 > ([live demo](https://47zzz.github.io/MoVE/)).
+>
+> 🗂️ **Looking for the data generation pipeline?** See **[47zzz/MoVE-data-pipeline](https://github.com/47zzz/MoVE-data-pipeline)** for the scripts that synthesize the bilingual expressive speech dataset.
 
 ---
 
