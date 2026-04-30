@@ -3,6 +3,7 @@
 [![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b)](https://arxiv.org/pdf/2604.17435)
 [![Demo](https://img.shields.io/badge/Demo-Live-4f46e5)](https://47zzz.github.io/MoVE/)
 [![Project](https://img.shields.io/badge/Project-MoVE-181717)](https://github.com/47zzz/MoVE)
+[![Dataset](https://img.shields.io/badge/Dataset-HuggingFace-ff9d00)](https://huggingface.co/datasets/47z/MoVE)
 
 > Code companion to **MoVE: Translating Laughter and Tears via Mixture of
 > Vocalization Experts in Speech-to-Speech Translation** (Interspeech 2026, Under Review).
@@ -26,6 +27,8 @@ It does **not** ship model checkpoints. Train your own with the steps below.
 > ([live demo](https://47zzz.github.io/MoVE/)).
 >
 > 🗂️ **Looking for the data generation pipeline?** See **[47zzz/MoVE-data-pipeline](https://github.com/47zzz/MoVE-data-pipeline)** for the scripts that synthesize the bilingual expressive speech dataset.
+>
+> 🤗 **Looking for the dataset?** Download from **[datasets/47z/MoVE](https://huggingface.co/datasets/47z/MoVE)** on HuggingFace.
 
 ---
 
