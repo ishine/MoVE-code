@@ -19,8 +19,6 @@ This repository contains:
 * a Dockerfile reproducing the runtime
 * two single-sample inference entry points (LoRA-merged and xLoRA-routed)
 
-It does **not** ship model checkpoints. Train your own with the steps below.
-
 > 🎬 **Looking for audio samples and the dataset?** The interactive demo
 > page, dataset samples, and model output comparisons live in the main
 > project repository: **[47zzz/MoVE](https://github.com/47zzz/MoVE)**
